@@ -14,8 +14,7 @@ environment:
     strategy:
       runOnce:
         deploy:
-          steps:
-          - script: echo Hello world
+          
 steps:
 - task: NodeTool@0
   inputs:
