@@ -9,19 +9,31 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
-environment: 
-      name: 'testEnv'
+stages:
+- stage: approval
+  condition: succeeded()
+  jobs:
+  - deployment: approvalStage
+    displayName: approval Web stage
+    environment:
+      name: testEnv
     strategy:
-      runOnce:
-        deploy:
-          
-steps:
-- task: NodeTool@0
-  inputs:
-    versionSpec: '10.x'
-  displayName: 'Install Node.js'
+       runOnce:
+         deploy:
+          steps:
+            - script: echo Hello world
 
-- script: |
-    npm install
-    npm run build
-  displayName: 'npm install and build'
+- stage: deploy
+  condition: succeeded()
+  jobs:
+  - job:
+    steps:
+      - task: NodeTool@0
+        inputs:
+          versionSpec: '10.x'
+        displayName: 'Install Node.js'
+
+      - script: |
+          npm install
+          npm run build
+        displayName: 'npm install and build'
