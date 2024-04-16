@@ -9,6 +9,13 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
+environment: 
+      name: 'testEnv'
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - script: echo Hello world
 steps:
 - task: NodeTool@0
   inputs:
