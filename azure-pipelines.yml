@@ -23,9 +23,11 @@ stages:
           steps:
             - script: echo Hello world
 
+
 - stage: deploy
   condition: succeeded()
   jobs:
+
   - job:
     steps:
       - task: NodeTool@0
@@ -33,6 +35,12 @@ stages:
           versionSpec: '10.x'
         displayName: 'Install Node.js'
 
+      - task: PowerShell@2
+        inputs:
+          targetType: 'inline'
+          script: |
+                Test-Connection  www.google.com
+      
       - script: |
           npm install
           npm run build
