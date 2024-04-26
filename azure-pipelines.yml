@@ -10,6 +10,7 @@ pool:
   vmImage: windows-latest
 
 
+
 stages:
 - stage: approval
   condition: succeeded()
@@ -41,10 +42,36 @@ stages:
         inputs:
           targetType: 'inline'
           script: |
-                Get-ItemProperty 'HKLM:\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\Google Chrome' | Select-Object DisplayName, DisplayVersion
+                Write-Host "Hello World"
         condition: succeeded()
       
       - script: |
           npm install
           npm run build
         displayName: 'npm install and build'
+
+      - task: PythonScript@0
+        inputs:
+          scriptSource: 'inline'
+          script: |
+            from selenium import webdriver
+            from selenium.webdriver.chrome.service import Service
+      
+            # 设置 Chrome WebDriver 的路径
+            chrome_driver_path = 'C:\SeleniumWebDrivers\ChromeDriver'
+      
+            # 创建 Chrome WebDriver 服务
+            chrome_service = Service(chrome_driver_path)
+            chrome_service.start()
+      
+            # 创建 Chrome WebDriver 实例
+            driver = webdriver.Chrome(service=chrome_service)
+      
+            # 打开网页
+            driver.get("https://www.google.com")
+      
+            # 关闭浏览器
+            driver.quit()
+      
+            # 停止 Chrome WebDriver 服务
+            chrome_service.stop()
