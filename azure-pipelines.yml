@@ -42,7 +42,7 @@ stages:
         inputs:
           targetType: 'inline'
           script: |
-                Write-Host "Hello World"
+                pip install selenium
         condition: succeeded()
       
       - script: |
