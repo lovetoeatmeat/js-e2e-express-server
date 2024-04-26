@@ -43,6 +43,7 @@ stages:
           targetType: 'inline'
           script: |
                 pip install selenium
+                Get-ChildItem -Path C:\SeleniumWebDrivers\ChromeDriver
         condition: succeeded()
       
       - script: |
