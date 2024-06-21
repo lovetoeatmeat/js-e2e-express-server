@@ -14,7 +14,7 @@ pool:
 
 
 stages:
-- stage:
+- stage: aaa
   jobs:
   - job:
     steps:
@@ -22,6 +22,7 @@ stages:
         clean: true # If true, run git clean -ffdx followed by git reset --hard HEAD before fetching.
         timeoutInMinutes: 5 # Time to wait for this task to complete before the server kills it.
         retryCountOnTaskFailure: 5 # Number of retries if the task fails.
+        displayName: checkoutStage # Human-readable name for the task.
 
 
 - stage: approval
