@@ -19,7 +19,7 @@ stages:
   - job:
     steps:
       - checkout: self # Required as first property. Configures checkout for the specified repository.
-        clean: false # If true, run git clean -ffdx followed by git reset --hard HEAD before fetching.
+        clean: true # If true, run git clean -ffdx followed by git reset --hard HEAD before fetching.
         timeoutInMinutes: 5 # Time to wait for this task to complete before the server kills it.
         retryCountOnTaskFailure: 5 # Number of retries if the task fails.
         displayName: checkoutStage # Human-readable name for the task.
