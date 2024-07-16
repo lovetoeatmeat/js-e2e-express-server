@@ -30,10 +30,9 @@ stages:
         inputs:
           targetType: 'inline'
           script: |
-            echo 'Hello world'
-      
             echo $(System.PullRequest.TargetBranch)
             echo $(System.PullRequest.targetBranchName)
+            echo 'Hello world'
 
 
 
