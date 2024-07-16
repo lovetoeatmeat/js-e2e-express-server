@@ -37,6 +37,7 @@ stages:
          deploy:
           steps:
             - script: echo $(System.PullRequest.TargetBranch)
+                      echo $(System.PullRequest.targetBranchName)
 
   
   
