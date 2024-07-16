@@ -11,6 +11,8 @@ pool:
   vmImage: 'ubuntu-20.04'
   #testAgentPool
 
+variables:
+  targetBranch: $(System.PullRequest.TargetBranch)
 
 
 stages:
@@ -30,8 +32,7 @@ stages:
         inputs:
           targetType: 'inline'
           script: |
-            a=$(System.PullRequest.TargetBranch)
-            echo a
+            echo $targetBranch
             echo $(System.PullRequest.targetBranchName)
             echo 'Hello world'
 
