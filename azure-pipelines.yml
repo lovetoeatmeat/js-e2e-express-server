@@ -32,6 +32,7 @@ stages:
         inputs:
           targetType: 'inline'
           script: |
+            echo $(SYSTEM_PULLREQUEST_TARGETBRANCH)
             echo $targetBranch
             echo $(System.PullRequest.targetBranchName)
             echo 'Hello world'
