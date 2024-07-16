@@ -16,13 +16,13 @@ pool:
 stages:
 - stage: aaa
   jobs:
-  - job:
-    steps:
-      - checkout: self # Required as first property. Configures checkout for the specified repository.
-        clean: true # If true, run git clean -ffdx followed by git reset --hard HEAD before fetching.
-        timeoutInMinutes: 5 # Time to wait for this task to complete before the server kills it.
-        retryCountOnTaskFailure: 5 # Number of retries if the task fails.
-        displayName: checkoutStage # Human-readable name for the task.
+  #- job:
+  #  steps:
+  #    - checkout: self # Required as first property. Configures checkout for the specified repository.
+  #      clean: true # If true, run git clean -ffdx followed by git reset --hard HEAD before fetching.
+  #      timeoutInMinutes: 5 # Time to wait for this task to complete before the server kills it.
+  #      retryCountOnTaskFailure: 5 # Number of retries if the task fails.
+  #      displayName: checkoutStage # Human-readable name for the task.
     
   - job:
     steps:
@@ -30,7 +30,8 @@ stages:
         inputs:
           targetType: 'inline'
           script: |
-            echo $(System.PullRequest.TargetBranch)
+            a=$(System.PullRequest.TargetBranch)
+            echo a
             echo $(System.PullRequest.targetBranchName)
             echo 'Hello world'
 
